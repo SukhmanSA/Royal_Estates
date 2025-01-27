@@ -7,6 +7,8 @@ const userRoutes = require("./routes/user-routes")
 const estateRoutes = require("./routes/estates-routes")
 const HttpError = require("./models/http-error")
 
+require('dotenv').config();
+
 const app = express();
 
 app.use(bodyParser.json());
@@ -35,9 +37,8 @@ app.use((error, req, res, next) => {
     res.json({ message: error.message || "An unknown error occurred!" });
 });
 
-
 mongoose.connect(
-    "mongodb+srv://sukhmanwebdev:Harpreet%4022@estate-cluster.hukd4.mongodb.net/?retryWrites=true&w=majority&appName=estate-cluster"
+    process.env.MONGODB_URL
 ).then(()=>{
     app.listen(5000)
     console.log("connected to mongodb!")

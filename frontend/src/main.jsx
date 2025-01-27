@@ -5,6 +5,7 @@ import { BrowserRouter } from "react-router-dom"
 import App from './App.jsx'
 import { store } from './redux/store.jsx'
 import { Provider } from 'react-redux'
+import dotenv from "dotenv"
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
