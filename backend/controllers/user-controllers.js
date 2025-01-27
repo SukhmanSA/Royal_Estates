@@ -121,7 +121,7 @@ const login = async(req, res, next) =>{
 
 }
 
-const google = async (req, res, next) => {
+const otherOptions = async (req, res, next) => {
   const { username, email, photo } = req.body;
 
   const imagePath = req.file ? req.file.path : photo;
@@ -205,9 +205,9 @@ const updateUser = async (req, res, next) => {
   updatedUser.username = username || updatedUser.username;
   updatedUser.email = email || updatedUser.email;
 
-  const googleImage = updatedUser.image.slice(8,11);
+  const prevImage = updatedUser.image.slice(8,11);
 
-  if (req.file && googleImage !== "lh3" && googleImage !== "ava") {
+  if (req.file && prevImage !== "lh3" && prevImage !== "ava") {
     if (updatedUser.image) {
       const publicId = updatedUser.image
         .split('/image/upload/')[1]
@@ -228,7 +228,7 @@ const updateUser = async (req, res, next) => {
     updatedUser.image = req.file.path;
   }
 
-  if(req.file && googleImage === "lh3" || googleImage === "ava"){
+  if(req.file && prevImage === "lh3" || prevImage === "ava"){
     updatedUser.image = req.file.path;
   }
 
@@ -319,6 +319,6 @@ const deleteUserById = async(req, res, next) => {
 
 exports.signup = signup
 exports.login = login
-exports.google = google
+exports.otherOptions = otherOptions
 exports.updateUser = updateUser
 exports.deleteUserById = deleteUserById

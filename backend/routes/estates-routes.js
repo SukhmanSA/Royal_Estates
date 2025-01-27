@@ -19,8 +19,6 @@ const storage = new CloudinaryStorage({
 });
 
 const upload = multer({ storage });
-
-const auth = require("../models/auth")
 const estateControllers = require("../controllers/estates-controllers")
 
 router.post("/create-estate", upload.array("imageUrls", 6), estateControllers.createEstate)
